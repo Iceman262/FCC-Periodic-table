@@ -133,54 +133,6 @@ ALTER TABLE ONLY public.elements
 
 
 --
--- Name: elements elements_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key UNIQUE (name);
-
-
---
--- Name: elements elements_name_key1; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key1 UNIQUE (name);
-
-
---
--- Name: elements elements_name_key2; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key2 UNIQUE (name);
-
-
---
--- Name: elements elements_name_key3; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key3 UNIQUE (name);
-
-
---
--- Name: elements elements_name_key4; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key4 UNIQUE (name);
-
-
---
--- Name: elements elements_name_key5; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_name_key5 UNIQUE (name);
-
-
---
 -- Name: elements elements_name_unique; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
@@ -194,54 +146,6 @@ ALTER TABLE ONLY public.elements
 
 ALTER TABLE ONLY public.elements
     ADD CONSTRAINT elements_pkey PRIMARY KEY (atomic_number);
-
-
---
--- Name: elements elements_symbol_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key UNIQUE (symbol);
-
-
---
--- Name: elements elements_symbol_key1; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key1 UNIQUE (symbol);
-
-
---
--- Name: elements elements_symbol_key2; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key2 UNIQUE (symbol);
-
-
---
--- Name: elements elements_symbol_key3; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key3 UNIQUE (symbol);
-
-
---
--- Name: elements elements_symbol_key4; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key4 UNIQUE (symbol);
-
-
---
--- Name: elements elements_symbol_key5; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
---
-
-ALTER TABLE ONLY public.elements
-    ADD CONSTRAINT elements_symbol_key5 UNIQUE (symbol);
 
 
 --
@@ -295,4 +199,6 @@ ALTER TABLE ONLY public.properties
 --
 -- PostgreSQL database dump complete
 --
+
+
 
