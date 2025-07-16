@@ -2,26 +2,40 @@
 
 PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
 
-# Check if argument is provided
+# Exit early if no argument is provided
 if [[ -z $1 ]]; then
   echo "Please provide an element as an argument."
-  exit
+  exit 0
 fi
 
-# Query based on input type
-if [[ $1 =~ ^[0-9]+$ ]]; then
-  ELEMENT=$($PSQL "SELECT atomic_number, name, symbol, type, atomic_mass, melting_point_celsius, boiling_point_celsius FROM elements JOIN properties USING(atomic_number) JOIN types USING(type_id) WHERE atomic_number=$1")
-else
-  ELEMENT=$($PSQL "SELECT atomic_number, name, symbol, type, atomic_mass, melting_point_celsius, boiling_point_celsius FROM elements JOIN properties USING(atomic_number) JOIN types USING(type_id) WHERE symbol='$1' OR name='$1'")
-fi
+INPUT="$1"
 
-# Check if element was found
-if [[ -z $ELEMENT ]]; then
+# Query the database for matching element
+RESULT=$($PSQL "
+  SELECT
+    e.atomic_number,
+    e.name,
+    e.symbol,
+    t.type,
+    p.atomic_mass,
+    p.melting_point_celsius,
+    p.boiling_point_celsius
+  FROM elements AS e
+  JOIN properties AS p USING(atomic_number)
+  JOIN types      AS t USING(type_id)
+  WHERE e.atomic_number::TEXT = '$INPUT'
+     OR e.symbol ILIKE '$INPUT'
+     OR e.name   ILIKE '$INPUT';
+")
+
+# If no result is found, print message and exit
+if [[ -z $RESULT ]]; then
   echo "I could not find that element in the database."
-  exit
+  exit 0
 fi
 
-# Parse and display result
-IFS="|" read -r ATOMIC_NUMBER NAME SYMBOL TYPE MASS MELTING BOILING <<< "$ELEMENT"
-echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELTING celsius and a boiling point of $BOILING celsius."
+# Parse the result fields
+IFS="|" read -r ATOMIC_NUMBER NAME SYMBOL TYPE MASS MELT BOIL <<< "$RESULT"
 
+# Display formatted element information
+echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELT celsius and a boiling point of $BOIL celsius."
